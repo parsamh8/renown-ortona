@@ -1,0 +1,130 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renown Electric — Ortona Feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader" aria-hidden="true">
+      <div class="spinner"></div>
+      <p>Loading…</p>
+    </div>
+
+    <!-- Abstract Background -->
+    <div class="bg-abstract" aria-hidden="true">
+      <div class="blk"></div>
+      <div class="flow green"></div>
+      <div class="flow blue"></div>
+      <div class="block red"></div>
+      <div class="pulse orange"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="#home" aria-label="Back to top">RE</a>
+        <div class="nav-actions">
+          <a class="nav-link" href="#form">Form</a>
+          <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+            <img
+              src="assets/day-night.png"
+              alt="Toggle theme"
+              class="theme-icon"
+            />
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="home" class="container">
+      <!-- Hero -->
+      <section class="hero">
+        <h1>Renown Electric<br /><span class="sub">Ortona</span></h1>
+        <p class="hero-lead">
+          At Ortona, we want real feedback, your recommendations, concerns, and
+          ideas so we can fix problems fast and keep the facility tight. Strong
+          teams that actually collaborate get results nobody expects.
+        </p>
+      </section>
+
+      <!-- Sliding Message -->
+      <section class="callout" aria-live="polite">
+        <p class="slide-across">
+          Please share with us any recommendation or concern you might have. You
+          can even be anonymous!
+        </p>
+      </section>
+
+      <!-- Form -->
+      <section id="form" class="form-section">
+        <h2>Send a Message</h2>
+
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="feedback-form"
+          novalidate
+        >
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="Ortona Feedback" />
+
+          <div class="field">
+            <label for="name"
+              >Name <span class="optional">(optional)</span></label
+            >
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your name (or leave blank)"
+            />
+          </div>
+
+          <div class="field">
+            <label for="contact"
+              >Email or Phone <span class="optional">(optional)</span></label
+            >
+            <input
+              id="contact"
+              name="contact"
+              type="text"
+              placeholder="email@company.com or (555) 555-5555"
+            />
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="req">*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder="Be specific. What happened, where, and when?"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Deliver</button>
+          <p class="anon-note">
+            Leave name and contact empty to stay anonymous.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Made by Ortona © <span id="year"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

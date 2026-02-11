@@ -1,0 +1,225 @@
+/* style.css */
+:root{
+  --bg:#0b0b0c;
+  --text:#f5f7fb;
+  --muted:#b8c0cc;
+  --card:#121318;
+  --accent:#01d16f;
+  --blue:#09a6ff;
+  --red:#ff3b3b;
+  --orange:#ff9a1f;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+[data-theme="light"]{
+  --bg:#f7f8fb;
+  --text:#101218;
+  --muted:#475066;
+  --card:#ffffff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* Loader */
+#loader{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  background:radial-gradient(900px 500px at 20% 20%, rgba(1,209,111,.12), transparent 60%), var(--bg);
+  z-index:9999;
+  opacity:1;
+  transition:opacity .6s ease;
+}
+#loader.hidden{opacity:0;pointer-events:none}
+.spinner{
+  width:44px;height:44px;border-radius:50%;
+  border:4px solid color-mix(in oklab, var(--muted) 70%, transparent);
+  border-top-color:var(--blue);
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loader p{color:var(--muted)}
+
+/* Abstract background */
+.bg-abstract{position:fixed;inset:-20vh -10vw auto -10vw;height:60vh;pointer-events:none}
+.bg-abstract .blk{position:absolute;left:0;top:0;width:46vw;height:30vh;background:#000;opacity:.75;transform:skewX(-8deg)}
+.bg-abstract .flow{position:absolute;bottom:-15vh;width:65vw;height:55vh;border-radius:60% 40% 70% 30% / 40% 60% 40% 60%;mix-blend-mode:screen;filter:blur(24px);opacity:.35;animation:float 14s ease-in-out infinite}
+.bg-abstract .flow.green{left:10vw;background:linear-gradient(120deg, rgba(1,209,111,.85), transparent)}
+.bg-abstract .flow.blue{left:40vw;background:linear-gradient(120deg, rgba(9,166,255,.85), transparent);animation-delay:-7s}
+.bg-abstract .block.red{position:absolute;right:8vw;top:5vh;width:12vw;height:12vw;min-width:70px;min-height:70px;background:var(--red);box-shadow:var(--shadow)}
+.bg-abstract .pulse.orange{position:absolute;right:2vw;bottom:-2vh;width:12vw;height:12vw;min-width:70px;min-height:70px;border-radius:50%;background:radial-gradient(circle at 35% 35%, var(--orange), transparent 60%);filter:blur(8px);animation:pulse 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+@keyframes pulse{50%{transform:scale(1.06)}}
+
+/* Header */
+.site-header{
+  position:fixed;top:0;left:0;right:0;
+  background:color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  z-index:1000;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 14px;
+  max-width:980px;
+  margin:0 auto;
+}
+.brand{font-weight:900;color:var(--text);text-decoration:none}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-link{color:var(--muted);text-decoration:none;font-weight:700}
+.nav-link:hover{color:var(--text)}
+.toggle{
+  width:36px;height:36px;border-radius:999px;
+  border:1px solid color-mix(in oklab, var(--text) 18%, transparent);
+  background:linear-gradient(180deg, color-mix(in oklab, var(--card) 75%, transparent), color-mix(in oklab, #000 12%, transparent));
+  cursor:pointer;
+  position:relative;
+}
+.toggle::after{
+  content:"";
+  position:absolute;inset:8px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, var(--accent), transparent 60%);
+}
+
+/* Layout (mobile-first flex) */
+.container{
+  max-width:980px;
+  margin:0 auto;
+  padding:96px 14px 56px;
+  display:flex;
+  flex-direction:column;
+  gap:44px;
+}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding-top:16px}
+.hero h1{
+  margin:0;
+  font-size:clamp(44px, 10vw, 92px);
+  line-height:.95;
+  font-weight:900;
+  letter-spacing:-1px;
+  text-transform:uppercase;
+  background:linear-gradient(90deg, var(--text), color-mix(in oklab, var(--blue) 45%, var(--text)));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero h1 .sub{display:inline-block}
+.hero-lead{
+  margin:0;
+  max-width:44rem;
+  color:var(--muted);
+  font-size:clamp(15px, 4.3vw, 20px);
+  line-height:1.5;
+}
+
+/* Sliding callout */
+.callout{overflow:hidden}
+.slide-across{
+  white-space:nowrap;
+  display:inline-block;
+  font-weight:800;
+  font-size:clamp(16px, 4.5vw, 22px);
+  animation:slide 14s linear infinite;
+}
+@keyframes slide{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+/* Form */
+.form-section{display:flex;flex-direction:column;gap:14px}
+.form-section h2{
+  margin:0;
+  font-size:clamp(22px, 6vw, 34px);
+  font-weight:900;
+}
+.feedback-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background:var(--card);
+  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-weight:800}
+.optional{color:var(--muted);font-weight:700}
+.req{color:var(--red)}
+input, textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background:color-mix(in oklab, var(--bg) 90%, #000 10%);
+  color:var(--text);
+  outline:none;
+  font-size:16px;
+}
+textarea{resize:vertical;min-height:120px}
+input:focus, textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent);
+}
+.btn-primary{
+  width:100%;
+  padding:13px 16px;
+  border:none;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  color:#04130a;
+  background:linear-gradient(180deg, var(--accent), color-mix(in oklab, var(--accent) 70%, #000));
+}
+.anon-note{margin:0;color:var(--muted);font-size:14px;text-align:center}
+
+/* Footer */
+.site-footer{
+  padding:22px 14px;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.theme-btn:hover .theme-icon {
+  transform: rotate(20deg) scale(1.05);
+}
+
+
+/* Desktop refinements */
+@media (min-width: 900px){
+  .container{padding-top:110px}
+  .feedback-form{padding:20px}
+}
+
